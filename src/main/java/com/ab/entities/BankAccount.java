@@ -32,6 +32,17 @@ public abstract class BankAccount {
 	private double balance;
 	private LocalDateTime dateOpened;
 	
+	public BankAccount(int accountNumber, String firstName, String lastName, double balance, LocalDateTime dateOpened) {
+		
+		this.accountNumber = accountNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.balance = balance;
+		this.dateOpened = dateOpened;
+	}
+	
+	
+	
 	
 	
 

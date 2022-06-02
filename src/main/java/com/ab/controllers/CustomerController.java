@@ -2,12 +2,12 @@ package com.ab.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.ab.entities.Customer;
 import com.ab.services.CustomerService;
@@ -44,13 +44,15 @@ public class CustomerController {
 		@PostMapping("/login")
 		
 		public String loginProcess(@RequestParam(name = "username") String username,
-									@RequestParam(name = "password") String password) {
+									@RequestParam(name = "password") String password, ModelMap model) {
 			
 			Customer loggedInCustomer = this.customerService.loginCustomer(username, password);
 			if(loggedInCustomer != null) {
 				
-				ModelAndView mv = new ModelAndView();
-				mv.addObject("session_customer", loggedInCustomer);
+				model.addAttribute("session_customer", loggedInCustomer);
+				
+//				ModelAndView mv = new ModelAndView();
+//				mv.addObject("session_customer", loggedInCustomer);
 					
 				return "account";
 			}
